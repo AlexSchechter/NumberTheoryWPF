@@ -1,0 +1,26 @@
+﻿<Window x:Class="NumberTheoryWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NumberTheoryWPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Please enter an integer between 2 and 18,446,744,073,709,551,615: " Margin="5" />
+        <TextBox Grid.Column="1" Name="UserInput" Margin="5" Width="100"/>
+        <Button Grid.Row="1" Content="Submit" Click="Button_Click" />
+        <TextBlock Grid.Row="2" Text="The result is: " />
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding MethodExecutionTime}" />
+    </Grid>
+    
+</Window>
