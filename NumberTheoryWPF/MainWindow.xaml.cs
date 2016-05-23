@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using NumberTheoryWPF;
 
 
 namespace NumberTheoryWPF
@@ -30,6 +29,7 @@ namespace NumberTheoryWPF
         {
             InitializeComponent();
             fAnalysis = new Analysis();
+
             fWrapper = new MethodTimerWrapper<ulong>();            
         }
 
@@ -38,11 +38,28 @@ namespace NumberTheoryWPF
             ulong userInput; 
             if (UInt64.TryParse(UserInput.Text, out userInput))
             {
+
+                if ((bool)isPrime.IsChecked)
+                {
+                    MethodTimerWrapper<bool> isPrimeWrapper = new MethodTimerWrapper<bool>(fAnalysis.IsPrime, userInput);
+                    isPrimeWrapper.ExecuteMethod();
+                    DataContext = isPrimeWrapper;
+                }
+                else if((bool)primeFactors.IsChecked)
+                {
+                    MethodTimerWrapper<List<ulong>> primeFactorsWraper = new MethodTimerWrapper<List<ulong>>(fAnalysis.CalculatePrimeFactors, userInput);
+                    primeFactorsWraper.ExecuteMethod();
+                    DataContext = primeFactorsWraper;
+                }
+                else
+                {
+
+                }
                 fWrapper = new MethodTimerWrapper<ulong>(fAnalysis.CalculateLargestPrime, userInput);
                 fWrapper.ExecuteMethod();
                 DataContext = fWrapper;
             }
-            
+                     
         }
     }
 }
