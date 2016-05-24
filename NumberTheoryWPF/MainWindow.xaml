@@ -5,42 +5,64 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NumberTheoryWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="550">
-
-
-        <StackPanel Orientation="Vertical" Margin="10">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Please enter an integer between 2 and 18,446,744,073,709,551,615:  " />
-                <TextBox Name="UserInput"  Width="100"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <RadioButton GroupName="Operation" Name="isPrime" Content="Check If Prime " Margin="0,0,5,0" />
-            <RadioButton GroupName="Operation" Name="primeFactors" Content="Find Prime Factors " Margin="0,0,5,0" />
-            <RadioButton GroupName="Operation" Name="largestPrime" Content="Find Largest Prime Smaller Than Integer " Margin="0,0,5,0" />
-            </StackPanel>
-            <!--<StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <RadioButton GroupName="CalculationMode" Name="sequential" Content="Calculate Sequetial" Margin="0,0,5,0" />
-                <RadioButton GroupName="CalculationMode" Name="parallel" Content="Calculate Parallel" Margin="0,0,5,0" />
-            </StackPanel>-->
-            <StackPanel  Margin="0,10,0,0">
-            <Button Content="Submit" Click="Button_Click" />
-            </StackPanel>
+        Title="MainWindow" Height="350" Width="500">
+    
+    <StackPanel Orientation="Vertical" Margin="10">
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="The result is: " FontWeight="Bold" Margin="0,10,0,0" />
-            <TextBlock Text="{Binding Result}" />
+            <TextBlock Text="Please enter an integer between 2 and 18,446,744,073,709,551,615:  " />
+            <TextBox Name="UserInput"  Width="100"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <TextBlock Text="The calculation lasted: " FontWeight="Bold"  />
-                <TextBlock FontWeight="Bold">
-                    <TextBlock.Text>
-                        <MultiBinding StringFormat =" {0} seconds ">
-                            <Binding Path="MethodExecutionTime" />
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
+            <RadioButton GroupName="Operation" Name="isPrime" Content="Check If Prime " Margin="0,0,5,0" />
+            <RadioButton GroupName="Operation" Name="primeFactors" Content="Find Prime Factors " Margin="0,0,5,0" />
+            <RadioButton GroupName="Operation" Name="largestPrime" Content="Find Largest Prime Smaller Than Integer " Margin="0,0,5,0" />
         </StackPanel>
-
+        <!--<StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+            <RadioButton GroupName="CalculationMode" Name="sequential" Content="Calculate Sequetial" Margin="0,0,5,0" />
+            <RadioButton GroupName="CalculationMode" Name="parallel" Content="Calculate Parallel" Margin="0,0,5,0" />
+        </StackPanel>-->
+        <StackPanel  Margin="0,10,0,0">
+            <Button Content="Submit" Click="Button_Click" />
         </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+            <TextBlock Text="The result is: " FontWeight="Bold"  />
+            <TextBlock Text="{Binding Result}" FontWeight="Bold"/>
+            <!--<TextBlock FontWeight="Bold">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Text" Value="" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=largestPrime, Path=IsChecked}" Value="True">
+                            <Setter Property="Text" Value="{Binding Result}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>-->
+            <ListBox ItemsSource="{Binding Result}" FontWeight="Bold" BorderBrush="White" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+            <TextBlock Text="The calculation lasted: " FontWeight="Bold"  />
+            <TextBlock FontWeight="Bold">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat =" {0} in sequential calculation mode ">
+                        <Binding Path="MethodExecutionTime" />
+                    </MultiBinding>
 
-    
+                </TextBlock.Text>
+            </TextBlock>
+            <TextBlock>
+                <TextBlock.Text>
+                    <MultiBinding StringFormat=" - {0} seconds in parallel calculation mode ">
+                        <Binding ElementName="largestPrimeWrapperParallel" Path="MethodExceutionTime" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+        </StackPanel>
+        <StackPanel Margin="0,20,0,0">
+            <TextBlock Text="Please Note Thate The Calculations Could Take Several Minutes For Large Numbers" 
+                    FontSize="18" FontWeight="Bold" Foreground="DarkRed" TextWrapping="Wrap" TextAlignment="Center"/>
+        </StackPanel>
+    </StackPanel>
+   
 </Window>

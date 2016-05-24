@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumberTheoryWPF", "NumberTheoryWPF\NumberTheoryWPF.csproj", "{935D20CC-BC9F-4526-87DD-93CCE1FB8A18}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumberTheoryTest", "NumberTheoryTest\NumberTheoryTest.csproj", "{14B11421-4C3A-46E3-BCD0-97CD904B4CD2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{935D20CC-BC9F-4526-87DD-93CCE1FB8A18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{935D20CC-BC9F-4526-87DD-93CCE1FB8A18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{935D20CC-BC9F-4526-87DD-93CCE1FB8A18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14B11421-4C3A-46E3-BCD0-97CD904B4CD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14B11421-4C3A-46E3-BCD0-97CD904B4CD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14B11421-4C3A-46E3-BCD0-97CD904B4CD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14B11421-4C3A-46E3-BCD0-97CD904B4CD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -23,13 +23,14 @@ namespace NumberTheoryWPF
     public partial class MainWindow : Window
     {
         Analysis fAnalysis;
+        MultiThreadingAnalysis fAnalysisParallel;
         MethodTimerWrapper<ulong> fWrapper;
-
+        
         public MainWindow()
         {
             InitializeComponent();
             fAnalysis = new Analysis();
-
+            fAnalysisParallel = new MultiThreadingAnalysis();
             fWrapper = new MethodTimerWrapper<ulong>();            
         }
 
@@ -47,19 +48,19 @@ namespace NumberTheoryWPF
                 }
                 else if((bool)primeFactors.IsChecked)
                 {
-                    MethodTimerWrapper<List<ulong>> primeFactorsWraper = new MethodTimerWrapper<List<ulong>>(fAnalysis.CalculatePrimeFactors, userInput);
-                    primeFactorsWraper.ExecuteMethod();
-                    DataContext = primeFactorsWraper;
+                    MethodTimerWrapper<List<ulong>> primeFactorsWrapper = new MethodTimerWrapper<List<ulong>>(fAnalysis.CalculatePrimeFactors, userInput);
+                    primeFactorsWrapper.ExecuteMethod();
+                    DataContext = primeFactorsWrapper;
                 }
-                else
+                else if((bool)largestPrime.IsChecked)
                 {
-
-                }
-                fWrapper = new MethodTimerWrapper<ulong>(fAnalysis.CalculateLargestPrime, userInput);
-                fWrapper.ExecuteMethod();
-                DataContext = fWrapper;
-            }
-                     
+                    MethodTimerWrapper<ulong> largestPrimeWrapper = new MethodTimerWrapper<ulong>(fAnalysis.CalculateLargestPrime, userInput);
+                    largestPrimeWrapper.ExecuteMethod();
+                    DataContext = largestPrimeWrapper;
+                    MethodTimerWrapper<ulong> largestPrimeWrapperParallel = new MethodTimerWrapper<ulong>(fAnalysisParallel.CalculateLargestPrime, userInput);
+                    largestPrimeWrapperParallel.ExecuteMethod();
+                }            
+            }                     
         }
     }
 }
